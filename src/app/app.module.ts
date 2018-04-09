@@ -8,6 +8,10 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ProdutoProvider } from '../providers/produto/produto';
+import { DatabaseProvider } from '../providers/database/database';
+import { CategoriaProvider } from '../providers/categoria/categoria';
+import { SQLite } from '@ionic-native/sqlite';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ProdutoProvider,
+    DatabaseProvider,
+    CategoriaProvider,
+    SQLite
   ]
 })
 export class AppModule {}

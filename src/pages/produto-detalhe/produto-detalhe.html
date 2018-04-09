@@ -1,0 +1,68 @@
+<!--
+  Generated template for the ProdutoDetalhePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Produto</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="fechar()">       
+       <ion-icon name="md-close-circle"></ion-icon>
+      </button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-item>
+      <ion-label floating>Nome Produto:</ion-label>
+      <ion-input type="text" [(ngModel)]="produtoDto.nomeProduto"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label floating>Valor:</ion-label>
+      <ion-input type="number" 
+        
+        [(ngModel)]="produtoDto.valorProduto"></ion-input>
+    </ion-item>
+<!--(keypress)="verificarNumero($event, 'D')"-->
+    <ion-item>
+      <ion-label>Categoria</ion-label>
+      <ion-select [ngModel]="categoria" 
+      [compareWith]="posicionarCategoria"
+      (ionChange)="selecionarCategoria($event)">
+        <ion-option *ngFor="let categoria of listaCategorias" 
+          [value]="categoria"> 
+          {{categoria.descricao}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Estoque:</ion-label>
+      <ion-input type="number" 
+        
+        [(ngModel)]="produtoDto.quantidadeEstoque"></ion-input>
+    </ion-item>
+<!--(keypress)="verificarNumero($event, 'I')" -->
+    <ion-item>
+      <ion-label>Ativo</ion-label>
+      <ion-toggle  [(ngModel)]="produtoDto.ativo" ></ion-toggle>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label floating>Data Validade:</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY"
+      [(ngModel)]="produtoDto.dataValidadeProduto">
+    </ion-datetime>
+    </ion-item>
+      
+    <button ion-button small (click)="salvar()">
+        Salvar
+    </button>
+ 
+</ion-content>
