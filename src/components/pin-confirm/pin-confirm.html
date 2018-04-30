@@ -1,0 +1,31 @@
+<div class="content-modal">
+  <ion-header no-border>
+    <ion-toolbar>
+      <ion-title>PIN</ion-title>
+
+      <ion-buttons end>
+        <button ion-button icon-only clear color="secondary" (click)="close()">
+          <ion-icon name="md-close-circle"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-grid>
+      <ion-row>
+        <ion-item>
+          <ion-label floating>PIN</ion-label>
+
+          <ion-input [(ngModel)]="pin" type="text"></ion-input>
+        </ion-item>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <button ion-button full (click)="salvaPIN()">Salvar</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</div>

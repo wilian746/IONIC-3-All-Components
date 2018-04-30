@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PinConfirmComponent } from '../../components/pin-confirm/pin-confirm';
 
 @IonicPage()
 @Component({
@@ -13,7 +14,12 @@ export class LoginPage {
   public type = "password";
   public nameEye = "eye-off";
   public continuaLogado: any
-  constructor(public navCtrl: NavController, public navParams: NavParams, public fb: FormBuilder) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public fb: FormBuilder,
+    public modalCtrl: ModalController) {
+
     let emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
 
     this.formLogin = fb.group({
@@ -35,6 +41,11 @@ export class LoginPage {
       this.type = "password";
       this.nameEye = "eye-off";
     }
+  }
+  login(){
+    console.log(this.formLogin.value)
+    let modalPin = this.modalCtrl.create(PinConfirmComponent)
+    modalPin.present()
   }
   cadastrar() {
     this.navCtrl.push('CadastroPage');
