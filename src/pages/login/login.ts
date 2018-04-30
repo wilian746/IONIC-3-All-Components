@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PinConfirmComponent } from '../../components/pin-confirm/pin-confirm';
+import { File } from '@ionic-native/file';
 
 @IonicPage()
 @Component({
@@ -13,13 +14,20 @@ export class LoginPage {
   public showPass = false;
   public type = "password";
   public nameEye = "eye-off";
-  public continuaLogado: any
+  public continuaLogado: any;
+  public path: any
+  public archive: any
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public fb: FormBuilder,
-    public modalCtrl: ModalController) {
+    public toastCtrl: ToastController,
+    public modalCtrl: ModalController,
+    public file: File) {
 
+    this.path = file.dataDirectory;
+    this.archive = 'PIN.txt'
     let emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
 
     this.formLogin = fb.group({
@@ -29,7 +37,12 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    this.file.readAsText(this.path, this.archive).then((res)=>{
+      let modalPin = this.modalCtrl.create(PinConfirmComponent, {pin: res})
+      modalPin.present()
+    }).catch((err)=> {
+      this.mostraMenssagem('Olá, Realize login e registre um novo pin', 3500)
+    })
   }
   showPassword() {
     this.showPass = !this.showPass;
@@ -43,7 +56,6 @@ export class LoginPage {
     }
   }
   login(){
-    console.log(this.formLogin.value)
     let modalPin = this.modalCtrl.create(PinConfirmComponent)
     modalPin.present()
   }
@@ -51,4 +63,13 @@ export class LoginPage {
     this.navCtrl.push('CadastroPage');
   }
 
+  mostraMenssagem(message: string, duration?: number) {
+    let menssagem = this.toastCtrl.create({
+      message: message,
+      duration: duration,
+      showCloseButton: true,
+      closeButtonText: "Ok"
+    });
+    menssagem.present();
+  }
 }

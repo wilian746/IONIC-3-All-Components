@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PinConfirmComponent } from '../components/pin-confirm/pin-confirm'
+import { File } from '@ionic-native/file';
 @NgModule({
   declarations: [
     MyApp,
@@ -25,6 +26,7 @@ import { PinConfirmComponent } from '../components/pin-confirm/pin-confirm'
   ],
   providers: [
     StatusBar,
+    File,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
