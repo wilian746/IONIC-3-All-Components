@@ -1,0 +1,47 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="formLogin" (ngSubmit)="login(); $event.preventDefault()">
+
+    <ion-list no-lines>
+      <ion-item *ngIf="error">
+        <p>Os dados informados não estão corretos.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>E-mail</ion-label>
+        <ion-input type="text" spellcheck="false" autocapitalize="off" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="formLogin.get('email').errors && formLogin.get('email').dirty">
+        <p *ngIf="formLogin.get('email').hasError('required')">Campo obrigatório</p>
+        <p *ngIf="formLogin.get('email').hasError('pattern')">E-mail inválido</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Senha</ion-label>
+        <ion-input type="{{type}}" formControlName="senha" ionic-password-show-hide></ion-input>
+        <button ion-button large clear color="dark" type="button" item-right (click)="showPassword()">
+          <ion-icon name="{{nameEye}}"></ion-icon>
+        </button>
+      </ion-item>
+      <ion-item *ngIf="formLogin.get('senha').errors && formLogin.get('senha').dirty">
+        <p *ngIf="formLogin.get('senha').hasError('required')">Campo obrigatório</p>
+        <p *ngIf="formLogin.get('senha').hasError('minlength')">Mínimo 6 caracteres</p>
+      </ion-item>
+
+    </ion-list>
+
+    <button class="botao" ion-button full type="submit" [disabled]="formLogin.invalid">Entrar</button>
+
+  </form>
+
+  <button class="botao2" ion-button full color="light" (click)="cadastrar()">Cadastrar</button>
+
+</ion-content>
