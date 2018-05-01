@@ -28,7 +28,7 @@ export class HomePage {
   }
 
   IrParaLogin(){
-    this.navCtrl.push('LoginPage')
+    this.navCtrl.setRoot('LoginPage')
   }
 
 }

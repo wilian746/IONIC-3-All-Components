@@ -8,6 +8,11 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PinConfirmComponent } from '../components/pin-confirm/pin-confirm'
 import { File } from '@ionic-native/file';
+import { CategoriaProvider } from '../providers/categoria/categoria';
+import { DatabaseProvider } from '../providers/database/database';
+import { ProdutoProvider } from '../providers/produto/produto';
+import { SQLite } from '@ionic-native/sqlite';
+import { Camera } from '@ionic-native/camera';
 @NgModule({
   declarations: [
     MyApp,
@@ -27,6 +32,11 @@ import { File } from '@ionic-native/file';
   providers: [
     StatusBar,
     File,
+    CategoriaProvider,
+    DatabaseProvider,
+    ProdutoProvider,
+    SQLite,
+    Camera,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
