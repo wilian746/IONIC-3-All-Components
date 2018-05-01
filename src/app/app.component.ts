@@ -40,7 +40,7 @@ export class MyApp {
       {title: 'Login', component: 'LoginPage'},
       {title: 'Categoria', component: 'CategoriaPage'},
       {title: 'Produto', component: 'ProdutoPage'},
-      {title: 'Fechar', component: 'Fechar'}
+      {title: 'Fechar App', component: 'Fechar'}
     ]
   }
   openPage(page) {
