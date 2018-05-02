@@ -32,7 +32,7 @@ export class ArquivoTextoPage {
   ionViewDidLoad() {
     this.file.readAsText(this.diretorio, this.nomeArquivo)
     .then((ok) => {
-      this.texto = JSON.stringify(ok);
+      this.texto = ok;
     })
     .catch((err) => {
       this.erroDePesquisa = err
