@@ -28,23 +28,17 @@ export class MyApp {
         statusBar.styleDefault();
         splashScreen.hide();
       });
+
       dbProvider.createDatabase()
-        .then(() => {
-
-        })
-        .catch(()=> {
-
-        })
 
     this.pages = [
       {title: 'Login', component: 'LoginPage'},
-      {title: 'Categoria', component: 'CategoriaPage'},
-      {title: 'Produto', component: 'ProdutoPage'},
-      {title: 'Fechar', component: 'Fechar'}
+      {title: 'sqlLite', component: 'SqlLitePage'},
+      {title: 'Fechar app', component: 'Fechar'}
     ]
   }
   openPage(page) {
-    if (page.title == 'Fechar') {
+    if (page.component == 'Fechar') {
       this.platform.exitApp();
     } else {
       this.nav.setRoot(page.component);

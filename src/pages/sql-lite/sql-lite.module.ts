@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { CadastroPage } from './cadastro';
+import { SqlLitePage } from './sql-lite';
 
 @NgModule({
   declarations: [
-    CadastroPage,
+    SqlLitePage,
   ],
   imports: [
-    IonicPageModule.forChild(CadastroPage),
+    IonicPageModule.forChild(SqlLitePage),
   ],
 })
-export class CadastroPageModule {}
+export class SqlLitePageModule {}

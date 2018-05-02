@@ -1,0 +1,47 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>SQL LITE</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card *ngFor="let pessoa of pessoas">
+    <ion-card-header>
+      <div>
+        <span><b>{{pessoa.Nome}}</b></span>
+      </div>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><b>E-mail: </b>{{pessoa.Email}}</p>
+      <p><b>Senha: </b>{{pessoa.Senha}}</p>
+    </ion-card-content>
+
+    <ion-grid>
+      <ion-row justify-content-center justify-content-around>
+        <ion-col col-3>
+          <button  ion-button color="primary" clear icon-only (click)="editar(pessoa)">
+            <ion-icon ios="md-create" md="md-create"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-3>
+          <button ion-button color="danger" clear icon-only (click)="deletar(pessoa.IdPessoa)">
+            <ion-icon ios='md-trash' name='md-trash'></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-fab right bottom class="fab-create">
+    <button ion-fab color="dark" class="button-create" (click)="criar()">
+      <ion-icon ios='md-add' name='md-add'></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

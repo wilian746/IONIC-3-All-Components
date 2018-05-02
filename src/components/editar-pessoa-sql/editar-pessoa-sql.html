@@ -1,0 +1,64 @@
+
+<div class="content-modal">
+  <ion-header>
+    <ion-navbar>
+      <ion-title>Editar Pessoa</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only clear color="dark" (click)="closeModal()">
+          <ion-icon name="md-close-circle"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+
+  <ion-content>
+    <form padding [formGroup]="formEditar" (ngSubmit)="submit(); $event.preventDefault()">
+      <ion-list no-lines>
+        <ion-item *ngIf="error">
+          <p>Os dados informados não estão corretos.</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Nome</ion-label>
+          <ion-input type="text" spellcheck="false" autocapitalize="off" formControlName="nome"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="formEditar.get('nome').errors && formEditar.get('nome').dirty">
+          <p *ngIf="formEditar.get('nome').hasError('required')">Campo obrigatório</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>E-mail</ion-label>
+          <ion-input type="text" spellcheck="false" autocapitalize="off" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="formEditar.get('email').errors && formEditar.get('email').dirty">
+          <p *ngIf="formEditar.get('email').hasError('required')">Campo obrigatório</p>
+          <p *ngIf="formEditar.get('email').hasError('pattern')">E-mail inválido</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Senha</ion-label>
+          <ion-input type="{{type}}" formControlName="senha"></ion-input>
+          <button ion-button large clear color="dark" type="button" item-right (click)="showPassword()">
+            <ion-icon name="{{nameEye}}"></ion-icon>
+          </button>
+        </ion-item>
+        <ion-item *ngIf="formEditar.get('senha').errors && formEditar.get('senha').dirty">
+          <p *ngIf="formEditar.get('senha').hasError('required')">Campo obrigatório</p>
+          <p *ngIf="formEditar.get('senha').hasError('minlength')">Mínimo 6 caracteres</p>
+        </ion-item>
+        <p *ngIf="senhaDiferente">As senhas não estão iguais por favor digite novamente</p>
+        <ion-item>
+          <ion-label floating>Confirmar Senha</ion-label>
+          <ion-input type="password" formControlName="confirmaSenha"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="formEditar.get('confirmaSenha').errors && formEditar.get('confirmaSenha').dirty">
+          <p *ngIf="formEditar.get('confirmaSenha').hasError('required')">Campo obrigatório</p>
+          <p *ngIf="formEditar.get('confirmaSenha').hasError('minlength')">Mínimo 6 caracteres</p>
+        </ion-item>
+
+        <button ion-button full type="submit" [disabled]="formEditar.invalid">Finalizar</button>
+      </ion-list>
+    </form>
+  </ion-content>
+</div>

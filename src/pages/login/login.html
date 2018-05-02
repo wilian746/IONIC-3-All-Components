@@ -1,6 +1,9 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Login</ion-title>
   </ion-navbar>
 
@@ -38,10 +41,7 @@
 
     </ion-list>
 
-    <button class="botao" ion-button full type="submit" [disabled]="formLogin.invalid">Entrar</button>
+    <button class="botao" ion-button full large type="submit" [disabled]="formLogin.invalid">Entrar</button>
 
   </form>
-
-  <button class="botao2" ion-button full color="light" (click)="cadastrar()">Cadastrar</button>
-
 </ion-content>

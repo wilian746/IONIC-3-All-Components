@@ -1,54 +1,63 @@
 import { Injectable } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
- 
+
 @Injectable()
 export class DatabaseProvider {
- 
-  public MensagemDeErro : String = "";
+  public MensagemDeErro = ''
+  constructor(private sqlite: SQLite) {}
 
-  constructor(private sqlite: SQLite) { 
-
-  }  
-  
-  public getDB() {
-    this.MensagemDeErro = "Provider getBD";
+  public getDB(){
     let db = this.sqlite.create({
-      name: 'produto.db',
+      name: 'empresa.db',
       location: 'default'
     });
-    this.MensagemDeErro = "Banco antes return";
     return db;
   }
-  
-  public createDatabase() {
+
+  public createDatabase(){
     return this.getDB()
       .then((db: SQLiteObject) => {
- 
-        // Criando as tabelas
-        this.createTables(db);
-  
+        this.createTables(db)
       })
       .catch(e => console.log(e));
   }
-  
+
   private createTables(db: SQLiteObject) {
-    // Criando as tabelas
     db.sqlBatch([
-      ['CREATE TABLE IF NOT EXISTS categoria ' + 
-       ' (idCategoria integer primary key AUTOINCREMENT NOT NULL, ' + 
-       ' descricao VARCHAR (100))'],
-      ['CREATE TABLE IF NOT EXISTS ' + 
-       ' produto (idProduto INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,' + 
-       ' nomeProduto VARCHAR (100)   NOT NULL COLLATE NOCASE,' +
-       ' valorProduto DECIMAL (10, 2) NOT NULL, ' +
-       ' quantidadeEstoque INTEGER NOT NULL,' +
-       ' ativo BOOLEAN not null,' +
-       ' dataValidadeProduto date not null, ' +
-       ' fotoProduto text not null, ' +
-       ' idCategoria INTEGER NOT NULL REFERENCES categoria (IdCategoria) );']
-    ])
-      .then(() => console.log('Tabelas criadas'))
-      .catch(e => console.error('Erro ao criar as tabelas', e));
-  } 
-    
+      ['CREATE TABLE IF NOT EXISTS pessoa ' +
+       ' (idPessoa INTEGER primary key AUTOINCREMENT NOT NULL, ' +
+       ' nome VARCHAR(100) NOT NULL, ' +
+       ' email VARCHAR(50) NOT NULL, ' +
+       ' senha VARCHAR(25) NOT NULL )'],
+
+      ['CREATE TABLE IF NOT EXISTS cargoFuncionario ( ' +
+       ' idCargoFuncionario INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ' +
+       ' nomeCargo VARCHAR(100) NOT NULL)'],
+
+      ['CREATE TABLE IF NOT EXISTS funcionario ' +
+      ' (idFuncionario INTEGER primary key AUTOINCREMENT NOT NULL, ' +
+      ' idade INTEGER NOT NULL, ' +
+      ' dataEntrada DATE NOT NULL, ' +
+      ' ativoNaEmpresa BOOLEAN NOT NULL, ' +
+      ' endereco VARCHAR(200), ' +
+      ' telefone INTEGER, ' +
+      ' cpf BIGINT NOT NULL, ' +
+      ' idCargoFuncionario INTEGER NOT NULL REFERENCES cargoFuncionario (idCargoFuncionario), ' +
+      ' idPessoa INTEGER NOT NULL REFERENCES pessoa (idPessoa) )']
+    ]).then((result) => {
+      console.log('Tabelas criadas', result)
+    }).catch((err) => {
+      console.error('Erro ao criar as tabelas', err)
+    });
+    // db.sqlBatch([
+    //   ['DROP DATABASE empresa.db']
+    // ]).then((result) => {
+    //   console.log('Banco deletado', result)
+    //   return result
+    // }).catch((err) => {
+    //   console.error('Erro ao deletar Banco', err)
+    //   return err
+    // });
+  }
+
 }

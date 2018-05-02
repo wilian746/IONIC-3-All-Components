@@ -8,16 +8,17 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PinConfirmComponent } from '../components/pin-confirm/pin-confirm'
 import { File } from '@ionic-native/file';
-import { CategoriaProvider } from '../providers/categoria/categoria';
 import { DatabaseProvider } from '../providers/database/database';
-import { ProdutoProvider } from '../providers/produto/produto';
 import { SQLite } from '@ionic-native/sqlite';
 import { Camera } from '@ionic-native/camera';
+import { PessoaSqlProvider } from '../providers/pessoa-sql/pessoa-sql';
+import { EditarPessoaSqlComponent } from '../components/editar-pessoa-sql/editar-pessoa-sql';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    PinConfirmComponent
+    PinConfirmComponent,
+    EditarPessoaSqlComponent
   ],
   imports: [
     BrowserModule,
@@ -27,18 +28,18 @@ import { Camera } from '@ionic-native/camera';
   entryComponents: [
     MyApp,
     HomePage,
-    PinConfirmComponent
+    PinConfirmComponent,
+    EditarPessoaSqlComponent
   ],
   providers: [
     StatusBar,
     File,
-    CategoriaProvider,
     DatabaseProvider,
-    ProdutoProvider,
     SQLite,
     Camera,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PessoaSqlProvider
   ]
 })
 export class AppModule {}

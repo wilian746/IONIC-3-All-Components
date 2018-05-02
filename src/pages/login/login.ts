@@ -59,9 +59,6 @@ export class LoginPage {
     let modalPin = this.modalCtrl.create(PinConfirmComponent)
     modalPin.present()
   }
-  cadastrar() {
-    this.navCtrl.push('CadastroPage');
-  }
 
   mostraMenssagem(message: string, duration?: number) {
     let menssagem = this.toastCtrl.create({
