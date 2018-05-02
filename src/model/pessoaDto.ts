@@ -4,6 +4,7 @@ export class PessoaDto {
   private _Nome: string;
   private _Email: string;
   private _Senha: string;
+  private _Foto: string;
 
   constructor(){}
 
@@ -40,6 +41,14 @@ export class PessoaDto {
 	}
 
     /**
+     * Getter Foto
+     * @return {string}
+     */
+	public get Foto(): string {
+		return this._Foto;
+	}
+
+    /**
      * Setter IdPessoa
      * @param {number} value
      */
@@ -71,4 +80,11 @@ export class PessoaDto {
 		this._Senha = value;
 	}
 
+    /**
+     * Setter Foto
+     * @param {string} value
+     */
+	public set Foto(value: string) {
+		this._Foto = value;
+	}
 }

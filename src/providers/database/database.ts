@@ -8,7 +8,7 @@ export class DatabaseProvider {
 
   public getDB(){
     let db = this.sqlite.create({
-      name: 'empresa.db',
+      name: 'banco',
       location: 'default'
     });
     return db;
@@ -28,29 +28,15 @@ export class DatabaseProvider {
        ' (idPessoa INTEGER primary key AUTOINCREMENT NOT NULL, ' +
        ' nome VARCHAR(100) NOT NULL, ' +
        ' email VARCHAR(50) NOT NULL, ' +
-       ' senha VARCHAR(25) NOT NULL )'],
-
-      ['CREATE TABLE IF NOT EXISTS cargoFuncionario ( ' +
-       ' idCargoFuncionario INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ' +
-       ' nomeCargo VARCHAR(100) NOT NULL)'],
-
-      ['CREATE TABLE IF NOT EXISTS funcionario ' +
-      ' (idFuncionario INTEGER primary key AUTOINCREMENT NOT NULL, ' +
-      ' idade INTEGER NOT NULL, ' +
-      ' dataEntrada DATE NOT NULL, ' +
-      ' ativoNaEmpresa BOOLEAN NOT NULL, ' +
-      ' endereco VARCHAR(200), ' +
-      ' telefone INTEGER, ' +
-      ' cpf BIGINT NOT NULL, ' +
-      ' idCargoFuncionario INTEGER NOT NULL REFERENCES cargoFuncionario (idCargoFuncionario), ' +
-      ' idPessoa INTEGER NOT NULL REFERENCES pessoa (idPessoa) )']
+       ' senha VARCHAR(25) NOT NULL, ' +
+       ' foto VARCHAR )' ]
     ]).then((result) => {
       console.log('Tabelas criadas', result)
     }).catch((err) => {
       console.error('Erro ao criar as tabelas', err)
     });
     // db.sqlBatch([
-    //   ['DROP DATABASE empresa.db']
+    //   ['DROP DATABASE banco']
     // ]).then((result) => {
     //   console.log('Banco deletado', result)
     //   return result

@@ -11,8 +11,8 @@ export class PessoaSqlProvider {
   public criarPessoa(pessoaDto) {
     return this.sql.getDB()
     .then((db: SQLiteObject) => {
-      let query = `insert into pessoa (nome, email, senha)
-                   values ('${pessoaDto.Nome}', '${pessoaDto.Email}', '${pessoaDto.Senha}')`;
+      let query = `insert into pessoa (nome, email, senha, foto)
+                   values ('${pessoaDto.Nome}', '${pessoaDto.Email}', '${pessoaDto.Senha}', '${pessoaDto.Foto}')`;
       return db.executeSql(query, [])
         .then((data: any) => {
         }).catch((err) => {return console.error('Erro ao executar query INSERT pessoa', err)});
@@ -35,6 +35,7 @@ export class PessoaSqlProvider {
               pessoaDto.Nome = data.rows.item(i).nome
               pessoaDto.Email = data.rows.item(i).email
               pessoaDto.Senha = data.rows.item(i).senha
+              pessoaDto.Foto = data.rows.item(i).foto
               pessoas.push(pessoaDto)
             }
             return pessoas;
@@ -55,7 +56,8 @@ export class PessoaSqlProvider {
       let query = `update pessoa set
                   nome = '${pessoaDto.Nome}',
                   email = '${pessoaDto.Email}',
-                  senha = '${pessoaDto.Senha}'
+                  senha = '${pessoaDto.Senha}',
+                  foto = '${pessoaDto.Foto}'
                   where idPessoa = ${pessoaDto.IdPessoa}`;
 
       return db.executeSql(query, [])

@@ -58,7 +58,13 @@
         <p *ngIf="formCadastro.get('confirmaSenha').hasError('required')">Campo obrigatório</p>
         <p *ngIf="formCadastro.get('confirmaSenha').hasError('minlength')">Mínimo 6 caracteres</p>
       </ion-item>
-
+      <ion-item>
+        <button ion-button icon-left type="button" color="light" (click)="salvarFoto($event)">
+          Foto
+          <ion-icon name="camera"></ion-icon>
+        </button>
+        <img [src]="formCadastro.value.foto" *ngIf="formCadastro.value.foto" style="width: 75px"/>
+      </ion-item>
       <button ion-button full type="submit" [disabled]="formCadastro.invalid">Finalizar</button>
     </ion-list>
   </form>

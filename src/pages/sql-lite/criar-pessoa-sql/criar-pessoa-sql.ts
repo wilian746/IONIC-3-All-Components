@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, ViewController, A
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PessoaDto } from '../../../model/pessoaDto';
 import { PessoaSqlProvider } from '../../../providers/pessoa-sql/pessoa-sql';
-
+import { Camera, CameraOptions } from '@ionic-native/camera';
 /**
  * Generated class for the CriarPessoaSqlPage page.
  *
@@ -32,7 +32,8 @@ export class CriarPessoaSqlPage {
     public alertCtrl: AlertController,
     public pessoaProvider: PessoaSqlProvider,
     public view: ViewController,
-    public app: App) {
+    public app: App,
+    public camera: Camera) {
     let emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 
     this.formCadastro = fb.group({
@@ -40,6 +41,7 @@ export class CriarPessoaSqlPage {
       senha: [null, [Validators.required, Validators.minLength(6)]],
       confirmaSenha: [null, [Validators.required, Validators.minLength(6)]],
       nome: [null, [Validators.required]],
+      foto: [null]
     })
   }
 
@@ -51,6 +53,7 @@ export class CriarPessoaSqlPage {
     this.pessoaDto.Email = this.formCadastro.value.email
     this.pessoaDto.Senha = this.formCadastro.value.senha
     this.pessoaDto.Nome = this.formCadastro.value.nome
+    this.pessoaDto.Foto = this.formCadastro.value.foto
 
     if(this.formCadastro.value.confirmaSenha != this.formCadastro.value.senha){
       this.senhaDiferente = true;
@@ -96,5 +99,23 @@ export class CriarPessoaSqlPage {
       this.type = "password";
       this.nameEye = "eye-off";
     }
+  }
+
+  salvarFoto(){
+    let options : CameraOptions = {
+      targetWidth:800,
+      targetHeight:600,
+      quality: 50,
+      correctOrientation: true,
+      saveToPhotoAlbum:true,
+      encodingType: this.camera.EncodingType.JPEG,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.CAMERA
+    }
+    this.camera.getPicture(options).then((res) => {
+      this.formCadastro.value.foto = "data:image/jpeg;base64," + res;
+    }).catch((err)=>{
+      console.log(err)
+    })
   }
 }

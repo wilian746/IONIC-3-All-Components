@@ -18,7 +18,8 @@
       </div>
     </ion-card-header>
 
-    <ion-card-content>
+    <ion-card-content class="container-content-card">
+      <img [src]="pessoa.Foto" *ngIf="pessoa.Foto"/>
       <p><b>E-mail: </b>{{pessoa.Email}}</p>
       <p><b>Senha: </b>{{pessoa.Senha}}</p>
     </ion-card-content>
