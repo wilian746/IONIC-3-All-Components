@@ -13,12 +13,15 @@ import { SQLite } from '@ionic-native/sqlite';
 import { Camera } from '@ionic-native/camera';
 import { PessoaSqlProvider } from '../providers/pessoa-sql/pessoa-sql';
 import { EditarPessoaSqlComponent } from '../components/editar-pessoa-sql/editar-pessoa-sql';
+import { EditarArquivoTextoComponent } from '../components/editar-arquivo-texto/editar-arquivo-texto';
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     PinConfirmComponent,
-    EditarPessoaSqlComponent
+    EditarPessoaSqlComponent,
+    EditarArquivoTextoComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { EditarPessoaSqlComponent } from '../components/editar-pessoa-sql/editar
     MyApp,
     HomePage,
     PinConfirmComponent,
-    EditarPessoaSqlComponent
+    EditarPessoaSqlComponent,
+    EditarArquivoTextoComponent
   ],
   providers: [
     StatusBar,

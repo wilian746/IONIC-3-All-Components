@@ -33,7 +33,8 @@ export class MyApp {
 
     this.pages = [
       {title: 'Login', component: 'LoginPage'},
-      {title: 'sqlLite', component: 'SqlLitePage'},
+      {title: 'SQL Lite', component: 'SqlLitePage'},
+      {title: 'Arquivo Texto', component: 'ArquivoTextoPage'},
       {title: 'Fechar app', component: 'Fechar'}
     ]
   }
