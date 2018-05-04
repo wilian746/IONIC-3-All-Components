@@ -60,6 +60,7 @@ export class ProdutoPage {
     this.produtoProvider.getAll(this.nomeProduto)
          .then((produtos: Array<ProdutoDto>) => {
            this.produtos = produtos;
+           console.log('Erro (1)', this.produtos)
          })
          .catch(erro =>
               {
@@ -134,12 +135,13 @@ export class ProdutoPage {
   }
 
   salvar(produto : ProdutoDto){
+    console.log(produto)
 
     if (produto.idProduto == 0)
     {
        this.produtoProvider.add(produto)
        .then( ok => {
-
+        console.log('Adicionou beleza', ok)
             this.carregarProdutos();
           } )
        .catch( erro => this.alerta(erro));

@@ -5,6 +5,7 @@ import { IonicPage, NavController, NavParams,
 import { ProdutoDto} from '../../Model/produtoDto';
 import { CategoriaDto} from '../../Model/categoriaDto';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 /**
  * Generated class for the ProdutoDetalhePage page.
  *
@@ -29,7 +30,8 @@ export class ProdutoDetalhePage {
         public viewCtrl: ViewController,
         public navParams: NavParams,
         private alertCtrl: AlertController,
-        private camera: Camera) {
+        private camera: Camera,
+        public barCode: BarcodeScanner) {
 
         this.montarTela();
 
@@ -51,13 +53,14 @@ export class ProdutoDetalhePage {
         //let dateString = '2016/03/31'
         //let newDate = new Date(dateString);
 
-        this.produtoDto.quantidadeEstoque = 0;
-        this.produtoDto.valorProduto = 0;
-        this.produtoDto.idCategoria = 0;
-        this.produtoDto.nomeProduto = "";
+        this.produtoDto.quantidadeEstoque = 10;
+        this.produtoDto.valorProduto = 20;
+        this.produtoDto.idCategoria = 1;
+        this.produtoDto.nomeProduto = "asdf";
         this.produtoDto.idProduto = 0;
         this.produtoDto.ativo = true;
-        this.produtoDto.fotoProduto = "";
+        this.produtoDto.fotoProduto = "https://i.ytimg.com/vi/cTLKCZcwvyk/maxresdefault.jpg";
+        this.produtoDto.codBarra = "4718000718226";
 
         let now = new Date();
         this.produtoDto.dataValidadeProduto = now.toISOString();
@@ -117,7 +120,7 @@ export class ProdutoDetalhePage {
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProdutoDetalhePage');
+
   }
 
   fechar(){
@@ -201,6 +204,17 @@ export class ProdutoDetalhePage {
       this.produtoDto.fotoProduto = "data:image/jpeg;base64," + res;
     }).catch((err)=>{
       console.log(err)
+    })
+  }
+
+  lerCodBarra(){
+    this.barCode.scan({
+      "prompt": "Posicione a leitura no codigo de barra",
+      "orientation": "landscape"
+    }).then((res)=>{
+      this.produtoDto.codBarra = res.text
+    }).catch((err)=>{
+      this.alerta('ERRO AO ABRIR CODIGO DE BARRA')
     })
   }
 }

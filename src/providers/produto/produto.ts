@@ -14,26 +14,27 @@ export class ProdutoProvider {
 
   Mensagem : String = "";
 
-  constructor(private dbProvider: DatabaseProvider) { 
-    
-  } 
-   
+  constructor(private dbProvider: DatabaseProvider) {
+
+  }
+
   public update(produtoDto) {
-      
-    //let dataValidade = new Date(produtoDto.dataValidadeProduto); 
+
+    //let dataValidade = new Date(produtoDto.dataValidadeProduto);
     return this.dbProvider.getDB()
-    .then((db: SQLiteObject) => {        
+    .then((db: SQLiteObject) => {
 
       let ativo = 0;
       if (produtoDto.ativo == true)
          ativo = 1;
       let sql = 'update produto set nomeProduto = "' + produtoDto.nomeProduto + '",' +
                 ' valorProduto = ' + produtoDto.valorProduto + ' , ' +
-                ' idCategoria = ' + produtoDto.idCategoria + ' , ' + 
+                ' idCategoria = ' + produtoDto.idCategoria + ' , ' +
                 ' ativo = ' + ativo + ' , ' +
                 ' fotoProduto = "' + produtoDto.fotoProduto + '", ' +
+                ' codBarraProduto = "' + produtoDto.codBarra + '", ' +
                 ' dataValidadeProduto = "' + produtoDto.dataValidadeProduto.substring(0,10) + '",' +
-                ' quantidadeEstoque = ' + produtoDto.quantidadeEstoque +                 
+                ' quantidadeEstoque = ' + produtoDto.quantidadeEstoque +
                 ' where idProduto = ' + produtoDto.idProduto;
       this.Mensagem = sql;
 
@@ -46,46 +47,49 @@ export class ProdutoProvider {
 }
 
   public add(produtoDto) {
-      
-      //let dataValidade = new Date(produtoDto.dataValidadeProduto); 
+
+    console.log(produtoDto)
+      //let dataValidade = new Date(produtoDto.dataValidadeProduto);
 
       return this.dbProvider.getDB()
-      .then((db: SQLiteObject) => { 
-        let sql = 'insert into produto (nomeProduto,valorProduto,' + 
+      .then((db: SQLiteObject) => {
+        let sql = 'insert into produto (nomeProduto,valorProduto,' +
           'idCategoria, quantidadeEstoque, ativo, fotoProduto, ' +
-          ' dataValidadeProduto) ' +
-           ' values (?, ?, ?, ?, ?, ?, ?)';
-        return db.executeSql(sql, 
-          [produtoDto.nomeProduto, 
+          ' dataValidadeProduto, codBarraProduto) ' +
+           ' values (?, ?, ?, ?, ?, ?, ?, ?)';
+        return db.executeSql(sql,
+          [produtoDto.nomeProduto,
           produtoDto.valorProduto,
           produtoDto.idCategoria ,
-          produtoDto.quantidadeEstoque, 
+          produtoDto.quantidadeEstoque,
           produtoDto.ativo,
           produtoDto.fotoProduto,
-          produtoDto.dataValidadeProduto.substring(0,10)])
+          produtoDto.dataValidadeProduto.substring(0,10),
+          produtoDto.codBarra])
           .then((data: any) => {
+            console.log('ACABOUUU', data)
           }).catch((e) => {return("Erro (1) " + e)});
         })
-        .catch((e) => {return("Erro (2) " + e)});   
+        .catch((e) => {return("Erro (2) " + e)});
   }
 
   public delete(id) {
-    
+
     return this.dbProvider.getDB()
     .then((db: SQLiteObject) => {
- 
+
       return db.executeSql('delete from produto where idProduto = ?', [id])
         .then( )
         .catch((e) => {return("Erro (1) " + e)});
     })
     .catch((e) => {return("Erro (2) " + e)});
   }
- 
+
   public get(id) {
-    
+
     return this.dbProvider.getDB()
     .then((db: SQLiteObject) => {
- 
+
       let produtoDto: ProdutoDto;
       produtoDto = new ProdutoDto();
 
@@ -102,30 +106,30 @@ export class ProdutoProvider {
     })
     .catch((e) => {return("Erro (2) " + e)});
   }
- 
+
   public getAll(nomeProduto : String) {
 
-     
+
     let produtos: Array<ProdutoDto>;
-    produtos = new Array<ProdutoDto>();  
+    produtos = new Array<ProdutoDto>();
 
     let sql = "select * from produto order by nomeProduto";
     if (nomeProduto.trim() != "")
-       sql = "select * from produto " + 
-             " where nomeProduto like '%" + nomeProduto.trim() + 
+       sql = "select * from produto " +
+             " where nomeProduto like '%" + nomeProduto.trim() +
              "%' order by nomeProduto";
 
     return this.dbProvider.getDB()
         .then((db: SQLiteObject) => {
 
           return db.executeSql(sql,[]).then((data: any) => {
-             if (data.rows.length > 0) {            
+             if (data.rows.length > 0) {
               for (var i = 0; i < data.rows.length; i++) {
-  
+
                 let produtoDto: ProdutoDto;
                 produtoDto = new ProdutoDto();
                 produtoDto = this.montarProduto(data.rows.item(i));
-                produtos.push(produtoDto);                
+                produtos.push(produtoDto);
               }
               return produtos;
             } else {
@@ -141,7 +145,6 @@ export class ProdutoProvider {
   {
       let produtoDto: ProdutoDto;
       produtoDto = new ProdutoDto();
-
       produtoDto.idProduto = item.idProduto;
       produtoDto.nomeProduto = item.nomeProduto;
       produtoDto.valorProduto = item.valorProduto;
@@ -149,8 +152,11 @@ export class ProdutoProvider {
       produtoDto.quantidadeEstoque = item.quantidadeEstoque;
       produtoDto.dataValidadeProduto = item.dataValidadeProduto.toString();
       produtoDto.fotoProduto = item.fotoProduto;
+      produtoDto.codBarra = item.codBarraProduto;
       produtoDto.ativo = item.ativo;
 
+      console.log('MONTANDO item...', item)
+      console.log('MONTANDO...', produtoDto)
       return produtoDto;
   }
 }

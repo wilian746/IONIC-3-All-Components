@@ -57,8 +57,8 @@
     <ion-item>
       <ion-label floating>Data Validade:</ion-label>
       <ion-datetime displayFormat="DD/MM/YYYY"
-      [(ngModel)]="produtoDto.dataValidadeProduto">
-    </ion-datetime>
+        [(ngModel)]="produtoDto.dataValidadeProduto">
+      </ion-datetime>
     </ion-item>
 
     <ion-item>
@@ -67,6 +67,14 @@
         <ion-icon name="camera"></ion-icon>
       </button>
       <img [src]="produtoDto.fotoProduto" *ngIf="produtoDto.fotoProduto"/>
+    </ion-item>
+
+    <ion-item>
+      <button ion-button icon-left full type="button" color="light" (click)="lerCodBarra()">
+        Codigo de Barra
+        <ion-icon name="camera"></ion-icon>
+      </button>
+      {{produtoDto.codBarra}}
     </ion-item>
     <button ion-button full large (click)="salvar()">
         Salvar

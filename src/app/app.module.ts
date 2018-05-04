@@ -13,6 +13,7 @@ import { DatabaseProvider } from '../providers/database/database';
 import { ProdutoProvider } from '../providers/produto/produto';
 import { SQLite } from '@ionic-native/sqlite';
 import { Camera } from '@ionic-native/camera';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner'
 @NgModule({
   declarations: [
     MyApp,
@@ -37,6 +38,7 @@ import { Camera } from '@ionic-native/camera';
     ProdutoProvider,
     SQLite,
     Camera,
+    BarcodeScanner,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

@@ -8,10 +8,20 @@ export class ProdutoDto {
   private _Ativo: Boolean;
   private _DataValidadeProduto: String;
   private _FotoProduto: String;
+  private _CodBarra: String;
 
   constructor() {
 
   }
+
+	public get codBarra(): String {
+		return this._CodBarra;
+	}
+
+	public set codBarra(value: String) {
+		this._CodBarra = value;
+	}
+
   get nomeProduto(): String {
     return this._NomeProduto;
   }
