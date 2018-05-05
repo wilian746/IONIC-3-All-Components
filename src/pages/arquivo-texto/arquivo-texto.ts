@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { File } from '@ionic-native/file';
+import { EditarArquivoTextoComponent } from '../../components/editar-arquivo-texto/editar-arquivo-texto';
 
 /**
  * Generated class for the ArquivoTextoPage page.
@@ -24,12 +25,17 @@ export class ArquivoTextoPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public file: File,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    public modal: ModalController) {
       this.diretorio = this.file.dataDirectory;
       this.nomeArquivo = 'arquivo.txt';
   }
 
   ionViewDidLoad() {
+    this.conferirSeExiste()
+  }
+
+  conferirSeExiste(){
     this.file.readAsText(this.diretorio, this.nomeArquivo)
     .then((ok) => {
       this.texto = ok;
@@ -44,7 +50,6 @@ export class ArquivoTextoPage {
       }
     });
   }
-
 
   alerta(titulo, mensagem){
     let alert = this.alertCtrl.create({
@@ -63,6 +68,13 @@ export class ArquivoTextoPage {
     }
   }
 
+  editar(){
+    const ArquivoTextoModal = this.modal.create(EditarArquivoTextoComponent);
+    ArquivoTextoModal.onDidDismiss(() => {
+      this.conferirSeExiste()
+    });
+    ArquivoTextoModal.present();
+  }
   deletar(){
 
     this.file.removeFile(this.diretorio, this.nomeArquivo).then((res) => {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { EmailComposer } from '@ionic-native/email-composer';
 /**
  * Generated class for the EmailPage page.
  *
@@ -15,11 +15,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class EmailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public email: any;
+  public tituloEmail: any;
+  public corpoEmail: any;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public emailCtrl: EmailComposer) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EmailPage');
   }
 
+  enviarEmailDinamico(){
+    this.emailCtrl.open({
+      to: this.email,
+      subject: this.tituloEmail,
+      body: this.corpoEmail,
+      isHtml: true
+    });
+  }
 }

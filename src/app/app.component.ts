@@ -36,15 +36,11 @@ export class MyApp {
       {title: 'SQL Lite', component: 'SqlLitePage'},
       {title: 'Arquivo Texto', component: 'ArquivoTextoPage'},
       {title: 'Cod Barra', component: 'CodBarraPage'},
-      {title: 'Fechar app', component: 'Fechar'}
+      {title: 'E-mail', component: 'EmailPage'}
     ]
   }
   openPage(page) {
-    if (page.component == 'Fechar') {
-      this.platform.exitApp();
-    } else {
-      this.nav.setRoot(page.component);
-    }
+    this.nav.setRoot(page.component);
   }
 }
 

@@ -87,5 +87,6 @@
     <plugin name="cordova-sqlite-storage" spec="^2.3.1" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="phonegap-plugin-barcodescanner" spec="^7.1.2" />
+    <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
     <engine name="android" spec="7.0.0" />
 </widget>

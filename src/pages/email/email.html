@@ -7,12 +7,32 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>email</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>E-mail</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Email para quem deseja enviar</ion-label>
+      <ion-input [(ngModel)]="email"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label floating>Titulo do email</ion-label>
+      <ion-input [(ngModel)]="tituloEmail"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Corpo do email</ion-label>
+      <ion-input [(ngModel)]="corpoEmail"></ion-input>
+    </ion-item>
+
+    <button ion-button large full (click)="enviarEmailDinamico()">Enviar Email</button>
+  </ion-list>
 </ion-content>

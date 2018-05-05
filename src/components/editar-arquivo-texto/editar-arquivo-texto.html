@@ -1,4 +1,25 @@
-<!-- Generated template for the EditarArquivoTextoComponent component -->
-<div>
-  {{text}}
-</div>
+
+<div class="content-modal">
+    <ion-header>
+      <ion-navbar>
+        <ion-title>Editar Arquivo Texto</ion-title>
+        <ion-buttons end>
+          <button ion-button icon-only clear color="dark" (click)="closeModal()">
+            <ion-icon name="md-close-circle"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-navbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Texto editado em Arquivo Texto</ion-label>
+
+          <ion-input type="text" spellcheck="false" autocapitalize="off" [(ngModel)]="texto"></ion-input>
+        </ion-item>
+
+        <button ion-button full (click)="submit()">Finalizar</button>
+      </ion-list>
+    </ion-content>
+  </div>

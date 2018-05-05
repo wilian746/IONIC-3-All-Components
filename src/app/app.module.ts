@@ -15,6 +15,7 @@ import { PessoaSqlProvider } from '../providers/pessoa-sql/pessoa-sql';
 import { EditarPessoaSqlComponent } from '../components/editar-pessoa-sql/editar-pessoa-sql';
 import { EditarArquivoTextoComponent } from '../components/editar-arquivo-texto/editar-arquivo-texto';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { EmailComposer } from '@ionic-native/email-composer';
 @NgModule({
   declarations: [
     MyApp,
@@ -41,6 +42,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     DatabaseProvider,
     SQLite,
     Camera,
+    EmailComposer,
     BarcodeScanner,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
