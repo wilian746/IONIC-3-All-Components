@@ -35,6 +35,7 @@ export class MyApp {
       {title: 'Login', component: 'LoginPage'},
       {title: 'SQL Lite', component: 'SqlLitePage'},
       {title: 'Arquivo Texto', component: 'ArquivoTextoPage'},
+      {title: 'Cod Barra', component: 'CodBarraPage'},
       {title: 'Fechar app', component: 'Fechar'}
     ]
   }

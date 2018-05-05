@@ -14,7 +14,7 @@ import { Camera } from '@ionic-native/camera';
 import { PessoaSqlProvider } from '../providers/pessoa-sql/pessoa-sql';
 import { EditarPessoaSqlComponent } from '../components/editar-pessoa-sql/editar-pessoa-sql';
 import { EditarArquivoTextoComponent } from '../components/editar-arquivo-texto/editar-arquivo-texto';
-
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 @NgModule({
   declarations: [
     MyApp,
@@ -41,6 +41,7 @@ import { EditarArquivoTextoComponent } from '../components/editar-arquivo-texto/
     DatabaseProvider,
     SQLite,
     Camera,
+    BarcodeScanner,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PessoaSqlProvider
