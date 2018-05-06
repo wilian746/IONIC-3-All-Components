@@ -102,7 +102,7 @@ export class CriarPessoaSqlPage {
   }
 
   salvarFoto(){
-    let options : CameraOptions = {
+    let configuracoes : CameraOptions = {
       targetWidth:800,
       targetHeight:600,
       quality: 50,
@@ -112,10 +112,8 @@ export class CriarPessoaSqlPage {
       destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: this.camera.PictureSourceType.CAMERA
     }
-    this.camera.getPicture(options).then((res) => {
+    this.camera.getPicture(configuracoes).then((res) => {
       this.formCadastro.value.foto = "data:image/jpeg;base64," + res;
-    }).catch((err)=>{
-      console.log(err)
     })
   }
 }

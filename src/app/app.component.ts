@@ -36,7 +36,8 @@ export class MyApp {
       {title: 'SQL Lite', component: 'SqlLitePage'},
       {title: 'Arquivo Texto', component: 'ArquivoTextoPage'},
       {title: 'Cod Barra', component: 'CodBarraPage'},
-      {title: 'E-mail', component: 'EmailPage'}
+      {title: 'E-mail', component: 'EmailPage'},
+      {title: 'Camera', component: 'CameraPage'}
     ]
   }
   openPage(page) {

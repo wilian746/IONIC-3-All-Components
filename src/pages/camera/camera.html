@@ -1,0 +1,24 @@
+<!--
+  Generated template for the CameraPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Camera</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <button ion-button full large (click)="tirarFotoBase64()">Foto</button>
+  <img [src]="fotoSelecionada" style="width: 150px">
+</ion-content>
+
+<ion-footer>
+  <button ion-button full large (click)="tirarFotoEmail()">Foto para email</button>
+  <button ion-button full large (click)="enviarEmail()">Email com anexo</button>
+</ion-footer>
