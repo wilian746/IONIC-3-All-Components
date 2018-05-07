@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Inputs</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding [ngClass]="{'isOpen': modalInside}">
+  <ion-list [ngClass]="{'isOpen': modalInside}">
+
+    <ion-item no-lines>
+      <ion-label floating>Input texto</ion-label>
+
+      <ion-input type="text" [ngModel]="inputText"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked>Input Numero</ion-label>
+
+      <ion-input type="number" [ngModel]="inputNumber"></ion-input>
+    </ion-item>
+
+    <ion-list>
+      <ion-item no-lines>
+        <ion-label>Cursos checkbox</ion-label>
+
+        <ion-select [(ngModel)]="inputSelectCheckbox" multiple="true" cancelText="Cancelar" okText="OK">
+          <ion-option value="sistemas">Sistemas de Informação</ion-option>
+
+          <ion-option value="administracao">Administração</ion-option>
+
+          <ion-option value="contabilidade">Contabilidade</ion-option>
+
+          <ion-option value="medicina">Medicina</ion-option>
+
+          <ion-option value="agronomia">Agronomia</ion-option>
+
+          <ion-option value="outros">Outros</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+
+    <ion-list>
+      <ion-item no-lines>
+        <ion-label>Cursos radio</ion-label>
+
+        <ion-select [(ngModel)]="inputSelectRadio" cancelText="Cancelar" okText="OK">
+          <ion-option value="sistemas">Sistemas de Informação</ion-option>
+
+          <ion-option value="administracao">Administração</ion-option>
+
+          <ion-option value="contabilidade">Contabilidade</ion-option>
+
+          <ion-option value="medicina">Medicina</ion-option>
+
+          <ion-option value="agronomia">Agronomia</ion-option>
+
+          <ion-option value="outros">Outros</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-item no-lines>
+      <ion-label>Ativo</ion-label>
+
+      <ion-toggle [(ngModel)]="inputTogle"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Data</ion-label>
+
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="inputDate"></ion-datetime>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button block (click)="mostrarValores()" [disabled]="modalInside">Valores</button>
+
+  <div *ngIf="modalInside" class="modalInside">
+    <h3>Aguarde o fechamento...</h3>
+    <p> <b>Texto:</b> {{inputText}}</p>
+    <p> <b>Numero:</b> {{inputNumber}}</p>
+    <p> <b>CheckBox:</b> {{inputSelectCheckbox}}</p>
+    <p> <b>Radio:</b> {{inputSelectRadio}}</p>
+    <p> <b>Togle:</b> {{inputTogle}}</p>
+    <p> <b>Data:</b> {{inputDate}}</p>
+  </div>
+</ion-content>

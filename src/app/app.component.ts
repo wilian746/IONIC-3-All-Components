@@ -37,7 +37,8 @@ export class MyApp {
       {title: 'Arquivo Texto', component: 'ArquivoTextoPage'},
       {title: 'Cod Barra', component: 'CodBarraPage'},
       {title: 'E-mail', component: 'EmailPage'},
-      {title: 'Camera', component: 'CameraPage'}
+      {title: 'Camera', component: 'CameraPage'},
+      {title: 'Inputs', component: 'InputsPage'}
     ]
   }
   openPage(page) {
