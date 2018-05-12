@@ -1,0 +1,58 @@
+<!--
+  Generated template for the PipePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>pipe</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div>
+    <ion-item no-lines>
+      <ion-label floating>Troca todo texto para minusculo</ion-label>
+
+      <ion-input type="text" [(ngModel)]="toLowerCase"></ion-input>
+    </ion-item>
+
+    <p><b>Original: </b>{{toLowerCase ? toLowerCase : ''}}</p>
+
+    <p><b>Transform: </b>{{toLowerCase ? toLowerCase : '' | mypipe}}</p>
+  </div>
+
+  <ion-grid>
+    <ion-row class="linha">
+      <h1 class="titulo">Soma Automátia</h1>
+      <ion-col class="coluna" col-7>
+        <ion-row class="linha">
+          <ion-item no-lines>
+            <ion-label floating>1º Número</ion-label>
+
+            <ion-input type="number" [(ngModel)]="firstNumber"></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row class="linha">
+          <ion-item no-lines>
+            <ion-label floating>2º Número</ion-label>
+
+            <ion-input type="number" [(ngModel)]="secondNumber"></ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+      <ion-col class="coluna">
+        <ion-row class="linha">
+          <p><b>Resultado</b></p>
+          <p *ngIf="firstNumber && secondNumber" class="resultado">{{0 | somaNumero:firstNumber:secondNumber}}</p>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

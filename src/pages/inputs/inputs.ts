@@ -33,7 +33,8 @@ export class InputsPage {
 
   mostrarValores(){
     this.modalInside = !this.modalInside
-
+    console.log(this.inputText)
+    console.log(this.inputNumber)
     setTimeout(() => {
       this.modalInside = !this.modalInside
     }, 3000);

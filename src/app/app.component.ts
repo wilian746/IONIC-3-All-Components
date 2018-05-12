@@ -38,7 +38,8 @@ export class MyApp {
       {title: 'Cod Barra', component: 'CodBarraPage'},
       {title: 'E-mail', component: 'EmailPage'},
       {title: 'Camera', component: 'CameraPage'},
-      {title: 'Inputs', component: 'InputsPage'}
+      {title: 'Inputs', component: 'InputsPage'},
+      {title: 'Pipes', component: 'PipePage'}
     ]
   }
   openPage(page) {

@@ -16,6 +16,7 @@ import { EditarPessoaSqlComponent } from '../components/editar-pessoa-sql/editar
 import { EditarArquivoTextoComponent } from '../components/editar-arquivo-texto/editar-arquivo-texto';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { EmailComposer } from '@ionic-native/email-composer';
+
 @NgModule({
   declarations: [
     MyApp,

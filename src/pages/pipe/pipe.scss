@@ -1,0 +1,6 @@
+page-pipe {
+  .linha { border: 1px solid #000; display: flex; justify-content: center; align-items: center;
+    .titulo, .resultado { text-align: center; width: 100%;}
+    .coluna { border: 1px solid #000; }
+  }
+}
