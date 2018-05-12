@@ -7,7 +7,10 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>pipe</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pipe</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -22,9 +25,9 @@
       <ion-input type="text" [(ngModel)]="toLowerCase"></ion-input>
     </ion-item>
 
-    <p><b>Original: </b>{{toLowerCase ? toLowerCase : ''}}</p>
+    <p><b>Original: </b>{{toLowerCase}}</p>
 
-    <p><b>Transform: </b>{{toLowerCase ? toLowerCase : '' | mypipe}}</p>
+    <p><b>Transform: </b>{{toLowerCase | transformaMinusculo}}</p>
   </div>
 
   <ion-grid>

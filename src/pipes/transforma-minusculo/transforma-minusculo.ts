@@ -1,14 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 /**
- * Generated class for the MypipePipe pipe.
+ * Generated class for the TransformaMinusculoPipe pipe.
  *
  * See https://angular.io/api/core/Pipe for more info on Angular Pipes.
  */
 @Pipe({
-  name: 'mypipe',
+  name: 'transformaMinusculo',
 })
-export class MypipePipe implements PipeTransform {
+export class TransformaMinusculoPipe implements PipeTransform {
   /**
    * Takes a value and makes it lowercase.
    */

@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
-import { MypipePipe } from './mypipe/mypipe';
 import { SomaNumeroPipe } from './soma-numero/soma-numero';
+import { TransformaMinusculoPipe } from './transforma-minusculo/transforma-minusculo';
 @NgModule({
-	declarations: [MypipePipe,
-    SomaNumeroPipe],
+	declarations: [
+    SomaNumeroPipe,
+    TransformaMinusculoPipe],
 	imports: [],
-	exports: [MypipePipe,
-    SomaNumeroPipe]
+	exports: [
+    SomaNumeroPipe,
+    TransformaMinusculoPipe]
 })
 export class PipesModule {}

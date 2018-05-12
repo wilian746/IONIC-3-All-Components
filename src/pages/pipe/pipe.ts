@@ -17,9 +17,9 @@ export class PipePage {
 
   public toLowerCase : any = 'TESTE';
 
-  public firstNumber : any = 123;
+  public firstNumber : any = 1;
 
-  public secondNumber : any = 123;
+  public secondNumber : any = 2;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
