@@ -40,7 +40,8 @@ export class MyApp {
       {title: 'Camera', component: 'CameraPage'},
       {title: 'Inputs', component: 'InputsPage'},
       {title: 'Pipes', component: 'PipePage'},
-      {title: 'RESTful', component: 'RestPage'}
+      {title: 'RESTful', component: 'RestPage'},
+      {title: 'Firebase', component: 'FirebasePage'}
     ]
   }
   openPage(page) {

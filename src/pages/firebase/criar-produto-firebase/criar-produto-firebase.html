@@ -1,0 +1,59 @@
+<!--
+  Generated template for the CriarProdutoFirebasePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>criarProdutoFirebase</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="formItem" padding (ngSubmit)="submit(); $event.preventDefault()">
+    <ion-list no-lines>
+      <ion-item *ngIf="error">
+        <p>Os dados informados não estão corretos.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Nome</ion-label>
+        <ion-input type="text" spellcheck="false" autocapitalize="off" formControlName="nome"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="formItem.get('nome').errors && formItem.get('nome').dirty">
+        <p *ngIf="formItem.get('nome').hasError('required')">Campo obrigatório</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Marca</ion-label>
+        <ion-input type="text" spellcheck="false" autocapitalize="off" formControlName="marca"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="formItem.get('marca').errors && formItem.get('marca').dirty">
+        <p *ngIf="formItem.get('marca').hasError('required')">Campo obrigatório</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Valor</ion-label>
+        <ion-input type="number" formControlName="valor" ionic-password-show-hide></ion-input>
+      </ion-item>
+      <ion-item *ngIf="formItem.get('valor').errors && formItem.get('valor').dirty">
+        <p *ngIf="formItem.get('valor').hasError('required')">Campo obrigatório</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Quantidade</ion-label>
+        <ion-input type="number" formControlName="quantidade" ionic-password-show-hide></ion-input>
+      </ion-item>
+      <ion-item *ngIf="formItem.get('quantidade').errors && formItem.get('quantidade').dirty">
+        <p *ngIf="formItem.get('quantidade').hasError('required')">Campo obrigatório</p>
+      </ion-item>
+    </ion-list>
+
+    <button ion-button full type="submit" [disabled]="formItem.invalid">Enviar</button>
+
+  </form>
+</ion-content>

@@ -19,6 +19,12 @@ import { EmailComposer } from '@ionic-native/email-composer';
 import { ProdutosProvider } from '../providers/produtos/produtos';
 import { EditarProdutoRestComponent } from '../components/editar-produto-rest/editar-produto-rest';
 import { HttpModule } from '@angular/http';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
+import { EditarProdutoFirebaseComponent } from '../components/editar-produto-firebase/editar-produto-firebase';
 
 @NgModule({
   declarations: [
@@ -27,12 +33,17 @@ import { HttpModule } from '@angular/http';
     PinConfirmComponent,
     EditarPessoaSqlComponent,
     EditarArquivoTextoComponent,
-    EditarProdutoRestComponent
+    EditarProdutoRestComponent,
+    EditarProdutoFirebaseComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(environment.firebase, 'start-project'), // imports firebase/app needed for everything
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,7 +52,8 @@ import { HttpModule } from '@angular/http';
     PinConfirmComponent,
     EditarPessoaSqlComponent,
     EditarArquivoTextoComponent,
-    EditarProdutoRestComponent
+    EditarProdutoRestComponent,
+    EditarProdutoFirebaseComponent
   ],
   providers: [
     StatusBar,
