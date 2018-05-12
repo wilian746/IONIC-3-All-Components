@@ -39,7 +39,8 @@ export class MyApp {
       {title: 'E-mail', component: 'EmailPage'},
       {title: 'Camera', component: 'CameraPage'},
       {title: 'Inputs', component: 'InputsPage'},
-      {title: 'Pipes', component: 'PipePage'}
+      {title: 'Pipes', component: 'PipePage'},
+      {title: 'RESTful', component: 'RestPage'}
     ]
   }
   openPage(page) {

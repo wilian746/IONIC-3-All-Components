@@ -16,6 +16,9 @@ import { EditarPessoaSqlComponent } from '../components/editar-pessoa-sql/editar
 import { EditarArquivoTextoComponent } from '../components/editar-arquivo-texto/editar-arquivo-texto';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { ProdutosProvider } from '../providers/produtos/produtos';
+import { EditarProdutoRestComponent } from '../components/editar-produto-rest/editar-produto-rest';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -23,10 +26,12 @@ import { EmailComposer } from '@ionic-native/email-composer';
     HomePage,
     PinConfirmComponent,
     EditarPessoaSqlComponent,
-    EditarArquivoTextoComponent
+    EditarArquivoTextoComponent,
+    EditarProdutoRestComponent
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -35,7 +40,8 @@ import { EmailComposer } from '@ionic-native/email-composer';
     HomePage,
     PinConfirmComponent,
     EditarPessoaSqlComponent,
-    EditarArquivoTextoComponent
+    EditarArquivoTextoComponent,
+    EditarProdutoRestComponent
   ],
   providers: [
     StatusBar,
@@ -47,7 +53,8 @@ import { EmailComposer } from '@ionic-native/email-composer';
     BarcodeScanner,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PessoaSqlProvider
+    PessoaSqlProvider,
+    ProdutosProvider
   ]
 })
 export class AppModule {}
