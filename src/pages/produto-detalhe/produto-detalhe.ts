@@ -53,14 +53,14 @@ export class ProdutoDetalhePage {
         //let dateString = '2016/03/31'
         //let newDate = new Date(dateString);
 
-        this.produtoDto.quantidadeEstoque = 10;
-        this.produtoDto.valorProduto = 20;
-        this.produtoDto.idCategoria = 1;
-        this.produtoDto.nomeProduto = "asdf";
+        this.produtoDto.quantidadeEstoque = 0;
+        this.produtoDto.valorProduto = 0;
+        this.produtoDto.idCategoria = 0;
+        this.produtoDto.nomeProduto = "";
         this.produtoDto.idProduto = 0;
-        this.produtoDto.ativo = true;
-        this.produtoDto.fotoProduto = "https://i.ytimg.com/vi/cTLKCZcwvyk/maxresdefault.jpg";
-        this.produtoDto.codBarra = "4718000718226";
+        this.produtoDto.ativo = false;
+        this.produtoDto.fotoProduto = "";
+        this.produtoDto.codBarra = "";
 
         let now = new Date();
         this.produtoDto.dataValidadeProduto = now.toISOString();

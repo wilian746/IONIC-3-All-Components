@@ -20,7 +20,7 @@ import { CategoriaDto} from '../../Model/categoriaDto';
 export class ProdutoPage {
 
   //produtos : Array<ProdutoDto>;
-  nomeProduto:String="";
+  codBarra:String="";
   produtos : Array<ProdutoDto>;
   mensagem : String = "Produtos: ";
 
@@ -57,10 +57,10 @@ export class ProdutoPage {
   carregarProdutos(){
 
     this.produtos = new Array<ProdutoDto>();
-    this.produtoProvider.getAll(this.nomeProduto)
+    this.produtoProvider.getAll(this.codBarra)
          .then((produtos: Array<ProdutoDto>) => {
            this.produtos = produtos;
-           console.log('Erro (1)', this.produtos)
+           console.log('Produtos', this.produtos)
          })
          .catch(erro =>
               {
@@ -163,25 +163,22 @@ export class ProdutoPage {
   pesquisar() {
     let prompt = this.alertCtrl.create({
       title: 'Atenção',
-      message: "Informe o nome do produto",
+      message: "Informe o Código de barra",
       inputs: [
         {
-          name: 'Produto',
-          placeholder: 'Nome do produto'
+          name: 'CodBarra',
+          placeholder: 'Código de barra'
         },
       ],
       buttons: [
         {
-          text: 'Cancelar',
-          handler: data => {
-            this.nomeProduto = "";
-            this.carregarProdutos();
-          }
+          text: 'Cancelar'
         },
         {
           text: 'Pesquisar',
           handler: data => {
-            this.nomeProduto = data.Produto;
+            console.log(data)
+            this.codBarra = data.CodBarra;
             this.carregarProdutos();
           }
         }

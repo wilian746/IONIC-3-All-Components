@@ -60,7 +60,9 @@
       "cordova-plugin-file": {},
       "cordova-sqlite-storage": {},
       "cordova-plugin-camera": {},
-      "phonegap-plugin-barcodescanner": {}
+      "phonegap-plugin-barcodescanner": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      }
     },
     "platforms": [
       "android"

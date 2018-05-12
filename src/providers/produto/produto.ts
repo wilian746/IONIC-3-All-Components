@@ -107,16 +107,16 @@ export class ProdutoProvider {
     .catch((e) => {return("Erro (2) " + e)});
   }
 
-  public getAll(nomeProduto : String) {
+  public getAll(codBarra : String) {
 
 
     let produtos: Array<ProdutoDto>;
     produtos = new Array<ProdutoDto>();
 
     let sql = "select * from produto order by nomeProduto";
-    if (nomeProduto.trim() != "")
+    if (codBarra.trim() != "")
        sql = "select * from produto " +
-             " where nomeProduto like '%" + nomeProduto.trim() +
+             " where codBarraProduto like '%" + codBarra.trim() +
              "%' order by nomeProduto";
 
     return this.dbProvider.getDB()
