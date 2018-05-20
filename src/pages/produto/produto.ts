@@ -5,6 +5,7 @@ import { ProdutoDto} from '../../Model/produtoDto';
 import { ProdutoProvider } from '../../providers/produto/produto';
 import { CategoriaProvider } from '../../providers/categoria/categoria';
 import { CategoriaDto} from '../../Model/categoriaDto';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 /**
  * Generated class for the ProdutoPage page.
  *
@@ -31,7 +32,8 @@ export class ProdutoPage {
      public alertCtrl : AlertController,
      public produtoProvider : ProdutoProvider,
      public categoriaProvider : CategoriaProvider,
-     public modalCtrl : ModalController) {
+     public modalCtrl : ModalController,
+     public barCode: BarcodeScanner) {
 
 
      this.montarTela();
@@ -172,7 +174,10 @@ export class ProdutoPage {
       ],
       buttons: [
         {
-          text: 'Cancelar'
+          text: 'CodBarra',
+          handler: data => {
+            this.lerCodBarra();
+          }
         },
         {
           text: 'Pesquisar',
@@ -187,6 +192,18 @@ export class ProdutoPage {
     prompt.present();
   }
 
+
+  lerCodBarra(){
+    this.barCode.scan({
+      "prompt": "Posicione a leitura no codigo de barra",
+      "orientation": "landscape"
+    }).then((res)=>{
+      this.codBarra = res.text
+      this.carregarProdutos();
+    }).catch((err)=>{
+      this.alerta('ERRO AO ABRIR CODIGO DE BARRA')
+    })
+  }
   alerta(mensagem)
   {
 
