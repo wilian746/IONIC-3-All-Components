@@ -25,6 +25,9 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { EditarProdutoFirebaseComponent } from '../components/editar-produto-firebase/editar-produto-firebase';
+import { SearchLocationProvider } from '../providers/search-location/search-location';
+import { ProcurarLocalComponent } from '../components/procurar-local/procurar-local';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { EditarProdutoFirebaseComponent } from '../components/editar-produto-fir
     EditarPessoaSqlComponent,
     EditarArquivoTextoComponent,
     EditarProdutoRestComponent,
-    EditarProdutoFirebaseComponent
+    EditarProdutoFirebaseComponent,
+    ProcurarLocalComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,8 @@ import { EditarProdutoFirebaseComponent } from '../components/editar-produto-fir
     EditarPessoaSqlComponent,
     EditarArquivoTextoComponent,
     EditarProdutoRestComponent,
-    EditarProdutoFirebaseComponent
+    EditarProdutoFirebaseComponent,
+    ProcurarLocalComponent
   ],
   providers: [
     StatusBar,
@@ -66,7 +71,9 @@ import { EditarProdutoFirebaseComponent } from '../components/editar-produto-fir
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PessoaSqlProvider,
-    ProdutosProvider
+    ProdutosProvider,
+    SearchLocationProvider,
+    Geolocation
   ]
 })
 export class AppModule {}

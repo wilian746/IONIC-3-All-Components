@@ -3,7 +3,7 @@
     <name>ionic-all-components</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.0.105:8100" />
+    <content original-src="index.html" src="http://192.168.42.23:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -88,5 +88,10 @@
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="phonegap-plugin-barcodescanner" spec="^7.1.2" />
     <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
+    <allow-navigation href="http://192.168.43.43:8100" />
+    <plugin name="cordova-plugin-geolocation" spec="~4.0.1">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
+    </plugin>
+    <allow-navigation href="http://192.168.42.23:8100" />
     <engine name="android" spec="7.0.0" />
 </widget>

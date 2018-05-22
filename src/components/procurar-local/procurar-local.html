@@ -1,0 +1,76 @@
+<div class="content-modal">
+    <ion-header no-border>
+      <ion-toolbar>
+        <ion-title>Destino</ion-title>
+
+        <ion-buttons end>
+          <button ion-button icon-only clear color="secondary" (click)="close()">
+            <ion-icon name="md-close-circle"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-segment>
+        <ion-segment-button (click)="changeTabsEndereco()">
+          <ion-icon name="md-home"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button (click)="changeTabsLocal()">
+          <ion-icon name="md-compass"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+
+      <ion-grid *ngIf="tabsEndereco">
+        <ion-row>
+          <ion-item>
+            <ion-label floating>Rua</ion-label>
+
+            <ion-input [(ngModel)]="rua" placeholder="Rua Alemeda S" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Numero</ion-label>
+
+            <ion-input [(ngModel)]="numero" placeholder="35" type="number"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Cidade</ion-label>
+
+            <ion-input [(ngModel)]="cidade" placeholder="Patos de Minas" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Estado</ion-label>
+
+            <ion-input [(ngModel)]="estado" placeholder="MG" type="text"></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <button ion-button full (click)="salvarEndereco()" [disabled]="!rua || !numero || !cidade || !estado">Salvar</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid *ngIf="!tabsEndereco">
+          <ion-row>
+            <ion-item>
+              <ion-label floating>Latitude</ion-label>
+
+              <ion-input [(ngModel)]="latitude" placeholder="-18.5742094" type="number"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Longitude</ion-label>
+
+              <ion-input [(ngModel)]="longitude" placeholder="-46.5130544" type="number"></ion-input>
+            </ion-item>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <button ion-button full (click)="salvarLocal()" [disabled]="!latitude || !longitude">Salvar</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </ion-content>
+  </div>
