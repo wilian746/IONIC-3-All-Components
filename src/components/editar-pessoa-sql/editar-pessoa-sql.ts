@@ -3,13 +3,8 @@ import { ViewController, NavParams, NavController, AlertController } from 'ionic
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { PessoaDto } from '../../model/pessoaDto';
 import { PessoaSqlProvider } from '../../providers/pessoa-sql/pessoa-sql';
+import { CameraOptions, Camera } from '@ionic-native/camera';
 
-/**
- * Generated class for the EditarPessoaSqlComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'editar-pessoa-sql',
   templateUrl: 'editar-pessoa-sql.html'
@@ -27,7 +22,8 @@ export class EditarPessoaSqlComponent {
     public navParams: NavParams,
     public navCtrl: NavController,
     public pessoaProvider: PessoaSqlProvider,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    public camera: Camera) {
 
       this.pessoa = navParams.get('pessoa')
 
@@ -39,6 +35,7 @@ export class EditarPessoaSqlComponent {
         senha: [this.pessoa.Senha, [Validators.required, Validators.minLength(6)]],
         confirmaSenha: [this.pessoa.Senha, [Validators.required, Validators.minLength(6)]],
         nome: [this.pessoa.Nome, [Validators.required]],
+        foto: [this.pessoa.Foto]
       })
   }
   ionViewDidLoad() {
@@ -48,6 +45,7 @@ export class EditarPessoaSqlComponent {
     this.pessoaDto.Email = this.formEditar.value.email
     this.pessoaDto.Senha = this.formEditar.value.senha
     this.pessoaDto.Nome = this.formEditar.value.nome
+    this.pessoaDto.Foto = this.formEditar.value.foto
     this.pessoaDto.IdPessoa = this.formEditar.value.id
     if(this.formEditar.value.confirmaSenha != this.formEditar.value.senha){
       this.senhaDiferente = true;
@@ -84,5 +82,23 @@ export class EditarPessoaSqlComponent {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  salvarFoto(e){
+    e.preventDefault();
+
+    let configuracoes : CameraOptions = {
+      targetWidth:800,
+      targetHeight:600,
+      quality: 50,
+      correctOrientation: true,
+      saveToPhotoAlbum:true,
+      encodingType: this.camera.EncodingType.JPEG,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.CAMERA
+    }
+    this.camera.getPicture(configuracoes).then((res) => {
+      this.formEditar.value.foto = "data:image/jpeg;base64," + res;
+    })
   }
 }

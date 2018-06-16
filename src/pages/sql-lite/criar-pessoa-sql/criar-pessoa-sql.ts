@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ViewController, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ViewController, App, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PessoaDto } from '../../../model/pessoaDto';
 import { PessoaSqlProvider } from '../../../providers/pessoa-sql/pessoa-sql';
@@ -33,7 +33,8 @@ export class CriarPessoaSqlPage {
     public pessoaProvider: PessoaSqlProvider,
     public view: ViewController,
     public app: App,
-    public camera: Camera) {
+    public camera: Camera,
+    public toastCtrl: ToastController) {
     let emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 
     this.formCadastro = fb.group({
@@ -59,34 +60,25 @@ export class CriarPessoaSqlPage {
       this.senhaDiferente = true;
     }else{
       if(!this.pessoaDto.Email){
-        this.alerta('Digite o email')
+        this.mostraMenssagem('Digite o email')
         return
       } else
       if(!this.pessoaDto.Senha){
-        this.alerta('Digite a senha')
+        this.mostraMenssagem('Digite a senha')
         return
       } else
       if(!this.pessoaDto.Nome){
-        this.alerta('Digite o nome')
+        this.mostraMenssagem('Digite o nome')
         return
       } else {
         this.pessoaProvider.criarPessoa(this.pessoaDto).then(()=>{
           let nav = this.app.getRootNav();
           nav.setRoot('SqlLitePage');
         }).catch(()=>{
-          this.alerta('Erro ao criar Pessoa')
+          this.mostraMenssagem('Erro ao criar Pessoa')
         })
       }
     }
-  }
-
-  alerta(mensagem){
-    let alert = this.alertCtrl.create({
-      title: 'Atenção',
-      subTitle: mensagem,
-      buttons: ['OK']
-    });
-    alert.present();
   }
 
   showPassword() {
@@ -115,5 +107,15 @@ export class CriarPessoaSqlPage {
     this.camera.getPicture(configuracoes).then((res) => {
       this.formCadastro.value.foto = "data:image/jpeg;base64," + res;
     })
+  }
+
+  mostraMenssagem(message: string, duration?: number) {
+    let menssagem = this.toastCtrl.create({
+      message: message,
+      duration: duration,
+      showCloseButton: true,
+      closeButtonText: "Ok"
+    });
+    menssagem.present();
   }
 }

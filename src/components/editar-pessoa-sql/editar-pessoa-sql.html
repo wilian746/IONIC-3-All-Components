@@ -47,7 +47,9 @@
           <p *ngIf="formEditar.get('senha').hasError('required')">Campo obrigatório</p>
           <p *ngIf="formEditar.get('senha').hasError('minlength')">Mínimo 6 caracteres</p>
         </ion-item>
+
         <p *ngIf="senhaDiferente">As senhas não estão iguais por favor digite novamente</p>
+
         <ion-item>
           <ion-label floating>Confirmar Senha</ion-label>
           <ion-input type="password" formControlName="confirmaSenha"></ion-input>
@@ -55,6 +57,14 @@
         <ion-item *ngIf="formEditar.get('confirmaSenha').errors && formEditar.get('confirmaSenha').dirty">
           <p *ngIf="formEditar.get('confirmaSenha').hasError('required')">Campo obrigatório</p>
           <p *ngIf="formEditar.get('confirmaSenha').hasError('minlength')">Mínimo 6 caracteres</p>
+        </ion-item>
+
+        <ion-item>
+          <button ion-button icon-left type="button" color="light" (click)="salvarFoto($event)">
+            Foto
+            <ion-icon name="camera"></ion-icon>
+          </button>
+          <img [src]="formEditar.value.foto" *ngIf="formEditar.value.foto" style="width: 75px"/>
         </ion-item>
 
         <button ion-button full type="submit" [disabled]="formEditar.invalid">Finalizar</button>

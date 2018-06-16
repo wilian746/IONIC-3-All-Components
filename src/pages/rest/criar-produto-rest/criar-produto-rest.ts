@@ -47,6 +47,9 @@ export class CriarProdutoRestPage {
       this.mostraMenssagem(this.resultCreate.message, 2500)
       let nav = this.app.getRootNav();
       nav.setRoot('RestPage');
+    }).catch((err) => {
+      this.loading.dismiss()
+      this.mostraMenssagem('Erro ao conectar no servidor', 5000)
     })
   }
   showLoader() {

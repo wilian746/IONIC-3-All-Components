@@ -20,6 +20,9 @@ export class FirebasePage {
     public toastCtrl: ToastController) {
     this.itemsCollection = db.collection<any>('items');
     this.items = this.itemsCollection.valueChanges();
+    this.items.subscribe(item => {
+      this.mostraMenssagem('Busca realizada com sucesso!', 1000)
+    })
   }
 
   addItem(){

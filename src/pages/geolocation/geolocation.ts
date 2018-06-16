@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ModalController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ModalController, ViewController, ToastController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ProcurarLocalComponent } from '../../components/procurar-local/procurar-local';
 import { SearchLocationProvider } from '../../providers/search-location/search-location';
@@ -26,7 +26,8 @@ export class GeolocationPage {
     public platform: Platform,
     public modal: ModalController,
     public view: ViewController,
-    public searchLocal: SearchLocationProvider
+    public searchLocal: SearchLocationProvider,
+    public toastCtrl: ToastController
     ) {
       platform.ready().then(() => {
         this.posicaoAtual();
@@ -47,18 +48,21 @@ export class GeolocationPage {
       map: this.mapa,
       position: new google.maps.LatLng(this.lat, this.long)
     });
+    console.log(marcador)
 
-    if(this.lat != 0) {
+    if(this.latDest && this.longDest) {
       var marcador2 = new google.maps.Marker({
         icon: 'assets/imgs/marcador.png',
         map: this.mapa,
         position: new google.maps.LatLng(this.latDest, this.longDest)
       })
+
+      console.log(marcador2)
     }
   }
 
   posicaoAtual(): any {
-    this.geolocation.getCurrentPosition()
+    this.geolocation.getCurrentPosition({ timeout: 30000 })
     .then(res => {
       this.lat = res.coords.latitude;
       this.long = res.coords.longitude;
@@ -66,16 +70,21 @@ export class GeolocationPage {
     })
     .catch((err) => {
       console.log(err);
-      this.lat = -18.5742094;
-      this.long = -46.513054499999996;
+      this.lat = -18.59;
+      this.long = -46.515;
       this.mostrarMapa();
     })
+
+    this.latDest = null
+    this.longDest = null
   }
 
   openModal(){
     const ItemModal = this.modal.create(ProcurarLocalComponent);
 
     let component = new ProcurarLocalComponent(this.view);
+
+    console.log(component)
 
     ItemModal.onDidDismiss((data: any) => {
       console.log(data)
@@ -93,16 +102,12 @@ export class GeolocationPage {
   }
 
   navegar(){
-    if (this.latDest !=0){
-      let directionsService = new google.maps.DirectionsService;
-      let directionsDisplay = new google.maps.DirectionsRenderer;
-      directionsDisplay = new google.maps.DirectionsRenderer();
+    if (this.latDest && this.longDest){
+      let directionsService = new google.maps.DirectionsService
+      let directionsDisplay = new google.maps.DirectionsRenderer
+      directionsDisplay = new google.maps.DirectionsRenderer()
 
-
-      let startPosition = new google.maps.LatLng(
-          this.lat,
-          this.long
-      );
+      let startPosition = new google.maps.LatLng(this.lat, this.long)
 
       const mapOptions = {
         zoom:18,
@@ -110,8 +115,8 @@ export class GeolocationPage {
         disableDefaultUI: true
       };
 
-      this.mapa = new google.maps.Map(document.getElementById('map'),
-      mapOptions);
+      this.mapa = new google.maps.Map(document.getElementById('map'), mapOptions);
+
       directionsDisplay.setMap(this.mapa);
 
       const request = {
@@ -128,9 +133,19 @@ export class GeolocationPage {
           directionsDisplay.setDirections(result);
         }
       });
+    } else {
+      this.mostraMenssagem('Clique no icone de pesquisa e selecione uma rota para navegar')
     }
   }
-
+  mostraMenssagem(message: string, duration?: number) {
+    let menssagem = this.toastCtrl.create({
+      message: message,
+      duration: duration,
+      showCloseButton: true,
+      closeButtonText: "Ok"
+    });
+    menssagem.present();
+  }
   carregaPontoMapaEndereco(data) {
     this.searchLocal.LocalizacaoEndereco(data.toString())
     .then(retorno => {

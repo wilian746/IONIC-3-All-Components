@@ -35,8 +35,9 @@ export class RestPage {
     this.produtosProvider.getProdutos().then((result) => {
       console.log('deu certo: ', result)
       this.produtos = result
-    }).catch((err)=>{
-      console.log('ERRO: ', err)
+      this.mostraMenssagem('Busca realizada com sucesso!', 5000)
+    }).catch((err) => {
+      this.mostraMenssagem('Erro ao conectar no servidor', 5000)
     })
   }
   editar(id) {
@@ -55,6 +56,8 @@ export class RestPage {
       setTimeout(() => {
         this.getAllProdutos()
       }, 200);
+    }).catch((err) => {
+      this.mostraMenssagem('Erro ao conectar no servidor', 5000)
     })
   }
 

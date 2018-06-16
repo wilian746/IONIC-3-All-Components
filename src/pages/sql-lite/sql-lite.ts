@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController, ToastController } from 'ionic-angular';
 import { PessoaDto } from '../../model/pessoaDto';
 import { PessoaSqlProvider } from '../../providers/pessoa-sql/pessoa-sql';
 import { EditarPessoaSqlComponent } from '../../components/editar-pessoa-sql/editar-pessoa-sql';
@@ -24,7 +24,8 @@ export class SqlLitePage {
     public navParams: NavParams,
     public alertCtrl : AlertController,
     public pessoaProvider: PessoaSqlProvider,
-    public modal: ModalController) {
+    public modal: ModalController,
+    public toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -36,18 +37,11 @@ export class SqlLitePage {
     this.pessoaProvider.retornaTodasPessoas()
     .then((result: Array<PessoaDto>) => {
       this.pessoas = result;
+      this.mostraMenssagem('Busca realizada com sucesso!', 5000)
     })
     .catch(erro => {
-      this.alerta(erro);
+      this.mostraMenssagem('Erro ao conectar no servidor', 5000)
     });
-  }
-  alerta(mensagem){
-    let alert = this.alertCtrl.create({
-      title: 'Atenção',
-      subTitle: mensagem,
-      buttons: ['OK']
-    });
-    alert.present();
   }
 
   criar(){
@@ -67,8 +61,18 @@ export class SqlLitePage {
   deletar(id){
     this.pessoaProvider.deletarPessoa(id).then(()=>{
       this.adquirirTodos()
-    }).catch((err)=>{
-      this.alerta('Erro ao deletar pessoa')
+    }).catch((err) => {
+      this.mostraMenssagem('Erro ao conectar no servidor', 5000)
     })
+  }
+
+  mostraMenssagem(message: string, duration?: number) {
+    let menssagem = this.toastCtrl.create({
+      message: message,
+      duration: duration,
+      showCloseButton: true,
+      closeButtonText: "Ok"
+    });
+    menssagem.present();
   }
 }

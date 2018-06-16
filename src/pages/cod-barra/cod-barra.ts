@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-
-/**
- * Generated class for the CodBarraPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -21,7 +14,8 @@ export class CodBarraPage {
 
   constructor(
     public navCtrl: NavController,
-    public barCode: BarcodeScanner) {
+    public barCode: BarcodeScanner,
+    public toastCtrl: ToastController) {
 
   }
 
@@ -32,12 +26,19 @@ export class CodBarraPage {
     }).then((res)=>{
       this.numeroCodBarra = res.text
       this.tipoDeCodBarra = res.format
+      this.mostraMenssagem('Leitura realizada com sucesso')
+    }).catch((err) => {
+      this.mostraMenssagem('Erro ao realizar leitura')
     })
   }
 
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CodBarraPage');
+  mostraMenssagem(message: string, duration?: number) {
+    let menssagem = this.toastCtrl.create({
+      message: message,
+      duration: duration,
+      showCloseButton: true,
+      closeButtonText: "Ok"
+    });
+    menssagem.present();
   }
-
 }

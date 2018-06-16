@@ -44,7 +44,11 @@ export class EditarProdutoRestComponent {
         valor: this.resultGetOne.valor,
         quantidade: this.resultGetOne.quantidade
       })
+      this.mostraMenssagem('Busca realizada com sucesso!', 5000)
       this.loading.dismiss()
+    }).catch((err) => {
+      this.loading.dismiss()
+      this.mostraMenssagem('Erro ao conectar no servidor', 5000)
     })
   }
   concluir(){
@@ -54,6 +58,9 @@ export class EditarProdutoRestComponent {
       this.loading.dismiss()
       this.mostraMenssagem(this.resultEdit.message, 2500)
       this.view.dismiss();
+    }).catch((err) => {
+      this.loading.dismiss()
+      this.mostraMenssagem('Erro ao conectar no servidor', 5000)
     })
   }
   closeModal(){

@@ -13,7 +13,7 @@ export class ProdutosProvider {
 			let headers = new Headers();
 			headers.append('Content-Type', 'application/json');
 
-      this.http.get('http://18.231.106.54:9000/produto/', {headers: headers})
+      this.http.get('http://18.228.38.244:9000/produto/', {headers: headers})
         .map(res=> res.json())
         .subscribe(data => {
           console.log('PROVIDER 1: ', data)
@@ -30,7 +30,7 @@ export class ProdutosProvider {
       let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-      this.http.delete('http://18.231.106.54:9000/produto/' + id, {headers: headers})
+      this.http.delete('http://18.228.38.244:9000/produto/' + id, {headers: headers})
         .map(res=> res.json())
         .subscribe(data => {
           resolve(data);
@@ -45,7 +45,7 @@ export class ProdutosProvider {
       let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-      this.http.get('http://18.231.106.54:9000/produto/' + id, {headers: headers})
+      this.http.get('http://18.228.38.244:9000/produto/' + id, {headers: headers})
         .map(res=> res.json())
         .subscribe(data => {
           resolve(data);
@@ -60,7 +60,7 @@ export class ProdutosProvider {
       let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-      this.http.put('http://18.231.106.54:9000/produto/' + id, JSON.stringify(credential), {headers: headers})
+      this.http.put('http://18.228.38.244:9000/produto/' + id, JSON.stringify(credential), {headers: headers})
         .map(res=> res.json())
         .subscribe(data => {
           resolve(data);
@@ -75,7 +75,7 @@ export class ProdutosProvider {
       let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-      this.http.post('http://18.231.106.54:9000/produto/', JSON.stringify(credential), {headers: headers})
+      this.http.post('http://18.228.38.244:9000/produto/', JSON.stringify(credential), {headers: headers})
         .map(res=> res.json())
         .subscribe(data => {
           resolve(data);
